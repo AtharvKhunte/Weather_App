@@ -4,6 +4,7 @@ export default function SearchBar({ onSearch }) {
   const [city, setCity] = useState("");
 
   const handleSearch = () => {
+    if (!city) return;
     onSearch(city);
     setCity("");
   };

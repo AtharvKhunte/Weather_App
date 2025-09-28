@@ -12,8 +12,9 @@ export default function WeatherApp() {
   const fetchWeather = async (city) => {
     if (!city) return;
     try {
+      // Trim city input to avoid extra spaces
       const res = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city.trim()}&units=metric&appid=${API_KEY}`
       );
       setWeather(res.data);
       setError("");
@@ -22,6 +23,9 @@ export default function WeatherApp() {
       setWeather(null);
     }
   };
+
+  // Debug: check if API key is loaded
+  console.log("API Key:", API_KEY);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6">
