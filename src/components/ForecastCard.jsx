@@ -1,9 +1,10 @@
-export default function ForecastCard({ data, unit }) {
+export default function ForecastCard({ data, unit, darkMode }) {
   const date = new Date(data.dt * 1000);
   const day = date.toLocaleDateString("en-US", { weekday: "short" });
 
   return (
-    <div className="bg-white/20 backdrop-blur-md p-4 rounded-xl shadow-lg text-center">
+    <div className={`${darkMode ? "bg-gray-700 text-white" : "bg-white/20 text-black"} 
+                    backdrop-blur-md p-4 rounded-xl shadow-lg text-center`}>
       <p className="font-semibold">{day}</p>
       <img
         src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
