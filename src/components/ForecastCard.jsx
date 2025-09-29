@@ -1,20 +1,18 @@
 export default function ForecastCard({ data }) {
-  const date = new Date(data.dt_txt).toLocaleDateString(undefined, {
-    weekday: "short",
-    day: "numeric",
-    month: "short"
-  });
+  // Convert timestamp to day name
+  const date = new Date(data.dt * 1000);
+  const day = date.toLocaleDateString("en-US", { weekday: "short" });
 
   return (
-    <div className="bg-white/20 backdrop-blur-md p-4 rounded-xl text-center w-32">
-      <p className="font-semibold">{date}</p>
+    <div className="bg-white/20 backdrop-blur-md p-4 rounded-xl shadow-lg text-center">
+      <p className="font-semibold">{day}</p>
       <img
         src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-        alt="weather icon"
-        className="mx-auto"
+        alt={data.weather[0].description}
+        className="mx-auto w-16 h-16"
       />
-      <p className="capitalize">{data.weather[0].description}</p>
-      <p className="font-bold">{Math.round(data.main.temp)}°C</p>
+      <p className="text-xl font-bold">{Math.round(data.main.temp)}°C</p>
+      <p className="capitalize text-sm">{data.weather[0].description}</p>
     </div>
   );
 }
