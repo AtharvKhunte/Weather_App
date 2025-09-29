@@ -1,5 +1,4 @@
-export default function ForecastCard({ data }) {
-  // Convert timestamp to day name
+export default function ForecastCard({ data, unit }) {
   const date = new Date(data.dt * 1000);
   const day = date.toLocaleDateString("en-US", { weekday: "short" });
 
@@ -11,7 +10,7 @@ export default function ForecastCard({ data }) {
         alt={data.weather[0].description}
         className="mx-auto w-16 h-16"
       />
-      <p className="text-xl font-bold">{Math.round(data.main.temp)}°C</p>
+      <p className="text-xl font-bold">{Math.round(data.main.temp)}°{unit}</p>
       <p className="capitalize text-sm">{data.weather[0].description}</p>
     </div>
   );

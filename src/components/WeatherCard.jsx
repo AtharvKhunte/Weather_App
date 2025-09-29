@@ -1,4 +1,4 @@
-export default function WeatherCard({ data }) {
+export default function WeatherCard({ data, unit }) {
   return (
     <div className="mt-8 bg-white/20 backdrop-blur-md p-6 rounded-2xl shadow-lg text-center w-80">
       <h2 className="text-2xl font-semibold">{data.name}, {data.sys.country}</h2>
@@ -8,7 +8,7 @@ export default function WeatherCard({ data }) {
         alt="weather icon"
         className="mx-auto"
       />
-      <p className="text-4xl font-bold">{Math.round(data.main.temp)}°C</p>
+      <p className="text-4xl font-bold">{Math.round(data.main.temp)}°{unit}</p>
       <div className="flex justify-around mt-4 text-sm">
         <p>💧 Humidity: {data.main.humidity}%</p>
         <p>🌬 Wind: {data.wind.speed} m/s</p>
